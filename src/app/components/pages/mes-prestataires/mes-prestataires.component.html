@@ -1,0 +1,125 @@
+<div class="team-title team-title-bg">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="team-title-text">
+                    <h2>Team Members Two</h2>
+                    <ul>
+                        <li>
+                            <a routerLink="/">Home</a>
+                        </li>
+                        <li>
+                            <i class="icofont-rounded-double-right"></i>
+                            Team Members Two
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="team-section team-style-four pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 main-service-area blog-side-bar">
+                <div class="service-sidebar">
+                    <form class="search-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="icofont-search-1"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="service-list">
+                        <p>Categories</p>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Toilet Cleaning
+                                    <i class="icofont-rounded-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Stay Hygienic
+                                    <i class="icofont-rounded-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    News
+                                    <i class="icofont-rounded-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Cleaning Floor
+                                    <i class="icofont-rounded-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Cleaning Kitchen
+                                    <i class="icofont-rounded-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Wash Home
+                                    <i class="icofont-rounded-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="discount-text">
+                        <h1>Get <span>15% Discount</span> on your first Service</h1>
+
+                        <div class="theme-button">
+                            <a href="#" class="default-btn">Book Now</a>
+                        </div>
+
+                        <div class="discount-shapes">
+                            <img src="assets/img/counter/1.png" alt="shape">
+                            <img src="assets/img/counter/2.png" alt="shape">
+                            <img src="assets/img/counter/3.png" alt="shape">
+                            <img src="assets/img/counter/4.png" alt="shape">
+                            <img src="assets/img/counter/5.png" alt="shape">
+                            <img src="assets/img/counter/6.png" alt="shape">
+                            <img src="assets/img/counter/7.png" alt="shape">
+                            <img src="assets/img/counter/8.png" alt="shape">
+                            <img src="assets/img/counter/5.png" alt="shape">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    @for (company of companies; track company.id) {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="team-card">
+                                <div class="team-img">
+                                    <img src="{{ UtilitiesService.defineDefaultImage(company.logo) }}" alt="{{ company.name }}" style="object-fit: fill;">
+
+                                    <div class="team-social">
+<!--                                        <a href="#"><i class="icofont-facebook"></i></a>-->
+<!--                                        <a href="#"><i class="icofont-twitter"></i></a>-->
+<!--                                        <a href="#"><i class="icofont-instagram"></i></a>-->
+                                        <a [href]="UtilitiesService.defineSlug(company.name)"><i class="icofont-eye-open"></i></a>
+                                    </div>
+                                </div>
+                                <div class="team-text">
+                                    <h4><a [href]="UtilitiesService.defineSlug(company.name)">{{ company.name }}</a></h4>
+                                    <p style="font-size: 15px; text-align: left"><i class="icofont-map-pins"></i> {{ company.address }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <app-pagination></app-pagination>
+    </div>
+</div>

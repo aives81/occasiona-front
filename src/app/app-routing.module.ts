@@ -17,6 +17,7 @@ import { ErrorComponent } from './components/pages/error/error.component';
 import { TeamComponent } from './components/pages/team/team.component';
 import { TeamTwoComponent } from './components/pages/team-two/team-two.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import {MesPrestatairesComponent} from "./components/pages/mes-prestataires/mes-prestataires.component";
 
 const routes: Routes = [
     {path: '', component: HomeOneComponent},
@@ -37,6 +38,8 @@ const routes: Routes = [
     {path: 'team-two', component: TeamTwoComponent},
     {path: 'contact', component: ContactComponent},
     // Here add new pages component
+    // New pages
+    {path: 'mes-prestataires', component: MesPrestatairesComponent},
 
     {path: '**', component: ErrorComponent} // This line will remain down from the whole pages component list
 ];

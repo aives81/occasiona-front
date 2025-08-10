@@ -1,0 +1,22 @@
+export interface Company {
+    id: string,
+    name: string,
+    phone: string,
+    initial_capital: BigInteger,
+    dateDeCreation: string,
+    size: number,
+    created_at: Date,
+    mail?: string,
+    logo?: string,
+    slug: string,
+    code: number,
+    categorie_service: string,
+    commune: string,
+    address: string,
+    ville: string,
+    owner_name: string,
+    visite: number | null,
+    like: number | null,
+    dislike: number | null
+    lowerPrice: number,
+}
