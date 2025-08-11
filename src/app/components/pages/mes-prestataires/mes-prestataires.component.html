@@ -24,98 +24,260 @@
         <div class="row">
             <div class="col-lg-4 main-service-area blog-side-bar">
                 <div class="service-sidebar">
-                    <form class="search-form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="icofont-search-1"></i>
-                            </button>
-                        </div>
-                    </form>
-
                     <div class="service-list">
-                        <p>Categories</p>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Toilet Cleaning
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Stay Hygienic
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    News
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Cleaning Floor
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Cleaning Kitchen
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Wash Home
-                                    <i class="icofont-rounded-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="discount-text">
-                        <h1>Get <span>15% Discount</span> on your first Service</h1>
+                        <p>
+                            <i class="icofont-filter" style="font-size: 1.2rem; margin-right: 5px;"></i>
+                            Affiner ta recherche
+                            <br>
+                            <span style="font-size: 0.9rem; color: #555;">
+                                Trouve ton prestataire plus rapidement !
+                            </span>
+                        </p>
+                        @if (criteria && criteria.length > 0) {
+                            <div class="form-group">
+                                @for (item of criteria; track item.id) {
+                                    <span class="btn btn-soft-primary btn-sm active rounded-pill" style="margin: 3px">
+                                        #{{ item.name }}
+                                    </span>
+                                }
+                            </div>
+                        }
 
-                        <div class="theme-button">
-                            <a href="#" class="default-btn">Book Now</a>
-                        </div>
-
-                        <div class="discount-shapes">
-                            <img src="assets/img/counter/1.png" alt="shape">
-                            <img src="assets/img/counter/2.png" alt="shape">
-                            <img src="assets/img/counter/3.png" alt="shape">
-                            <img src="assets/img/counter/4.png" alt="shape">
-                            <img src="assets/img/counter/5.png" alt="shape">
-                            <img src="assets/img/counter/6.png" alt="shape">
-                            <img src="assets/img/counter/7.png" alt="shape">
-                            <img src="assets/img/counter/8.png" alt="shape">
-                            <img src="assets/img/counter/5.png" alt="shape">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card category-list">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <a href="#"
+                                           class="btn d-flex justify-content-between align-items-center w-100"
+                                           data-bs-toggle="collapse"
+                                           data-bs-target="#collapseOne"
+                                           aria-expanded="true"
+                                           aria-controls="collapseOne">
+                                            <div>
+                                                🎉 Quel événement prépares-tu ?
+                                            </div>
+                                            <i class="icofont-rounded-right"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul>
+                                            @for (event of typeEvent; track event.id) {
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="{{ event.id }}"
+                                                        (change)="fillSearchCriteria(
+                                                            event.id,
+                                                            event.name,
+                                                            'type_events'
+                                                          )"
+                                                    />
+                                                    <label class="form-check-label" for="{{ event.id }}">
+                                                        {{ event.name }}
+                                                    </label>
+                                                </div>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card category-list">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <a href="#"
+                                           class="btn d-flex justify-content-between align-items-center w-100"
+                                           data-bs-toggle="collapse"
+                                           data-bs-target="#collapseTwo"
+                                           aria-expanded="true"
+                                           aria-controls="collapseTwo">
+                                            <div>
+                                                <i class="icofont-handshake-deal"></i> De quel service as-tu besoin ?
+                                            </div>
+                                            <i class="icofont-rounded-right"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul>
+                                            @for (service of categorieServices; track service.id) {
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="{{ service.id }}"
+                                                        (change)="fillSearchCriteria(
+                                                            service.id,
+                                                            service.name,
+                                                            'service_categories'
+                                                          )"
+                                                    />
+                                                    <label class="form-check-label" for="{{ service.id }}">
+                                                        {{ service.name }}
+                                                    </label>
+                                                </div>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card category-list">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <a href="#"
+                                           class="btn d-flex justify-content-between align-items-center w-100"
+                                           data-bs-toggle="collapse"
+                                           data-bs-target="#collapseThree"
+                                           aria-expanded="true"
+                                           aria-controls="collapseThree">
+                                            <div>
+                                                <i class="icofont-box"></i> De quel article as-tu besoin ?
+                                            </div>
+                                            <i class="icofont-rounded-right"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul>
+                                            @for (article of categorieArticles; track article.id) {
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="{{ article.id }}"
+                                                        (change)="fillSearchCriteria(
+                                                            article.id,
+                                                            article.name,
+                                                            'article_categories'
+                                                          )"
+                                                    />
+                                                    <label class="form-check-label" for="{{ article.id }}">
+                                                        {{ article.name }}
+                                                    </label>
+                                                </div>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card category-list">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">
+                                        <a href="#"
+                                           class="btn d-flex justify-content-between align-items-center w-100"
+                                           data-bs-toggle="collapse"
+                                           data-bs-target="#collapseFour"
+                                           aria-expanded="true"
+                                           aria-controls="collapseFour">
+                                            <div>
+                                                <i class="icofont-ui-map"></i> Dans quelle commune ?
+                                            </div>
+                                            <i class="icofont-rounded-right"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul>
+                                            @for (city of cities; track city.id) {
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="{{ city.id }}"
+                                                        (change)="fillSearchCriteria(
+                                                            city.id,
+                                                            city.ville + ' ' + city.name,
+                                                            'municipalities'
+                                                          )"
+                                                    />
+                                                    <label class="form-check-label" for="{{ city.id }}">
+                                                        {{ city.ville + ' - ' + city.name }}
+                                                    </label>
+                                                </div>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!--                    <div class="discount-text">-->
+                    <!--                        <h1>Get <span>15% Discount</span> on your first Service</h1>-->
+
+                    <!--                        <div class="theme-button">-->
+                    <!--                            <a href="#" class="default-btn">Book Now</a>-->
+                    <!--                        </div>-->
+
+                    <!--                        <div class="discount-shapes">-->
+                    <!--                            <img src="assets/img/counter/1.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/2.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/3.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/4.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/5.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/6.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/7.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/8.png" alt="shape">-->
+                    <!--                            <img src="assets/img/counter/5.png" alt="shape">-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="row">
-                    @for (company of companies; track company.id) {
-                        <div class="col-lg-4 col-md-6">
-                            <div class="team-card">
-                                <div class="team-img">
-                                    <img src="{{ UtilitiesService.defineDefaultImage(company.logo) }}" alt="{{ company.name }}" style="object-fit: fill;">
+                    @if (showLoader) {
+                        <div style="display: grid; place-items: center">
+                            <app-loader></app-loader>
+                        </div>
+                    }
 
-                                    <div class="team-social">
-<!--                                        <a href="#"><i class="icofont-facebook"></i></a>-->
-<!--                                        <a href="#"><i class="icofont-twitter"></i></a>-->
-<!--                                        <a href="#"><i class="icofont-instagram"></i></a>-->
-                                        <a [href]="UtilitiesService.defineSlug(company.name)"><i class="icofont-eye-open"></i></a>
+                    @if (!showLoader && notFound) {
+                        <div style="display: grid; place-items: center">
+                            <img
+                                src="../../assets/img/not-found.png"
+                                class="img-fluid"
+                                alt="Aucun résultat trouvé"
+                            />
+                        </div>
+                    }
+                    @if (!showLoader) {
+                        @for (company of companies; track company.id) {
+                            <div class="col-lg-4 col-md-6">
+                                <div class="team-card">
+                                    <div class="team-img">
+                                        <img src="{{ UtilitiesService.defineDefaultImage(company.logo) }}"
+                                             alt="{{ company.name }}" style="object-fit: fill;">
+
+                                        <div class="team-social">
+                                            <!--                                        <a href="#"><i class="icofont-facebook"></i></a>-->
+                                            <!--                                        <a href="#"><i class="icofont-twitter"></i></a>-->
+                                            <!--                                        <a href="#"><i class="icofont-instagram"></i></a>-->
+                                            <a [href]="UtilitiesService.defineSlug(company.name)"><i
+                                                class="icofont-eye-open"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="team-text">
+                                        <h4><a [href]="UtilitiesService.defineSlug(company.name)">{{ company.name }}</a>
+                                        </h4>
+                                        <p style="font-size: 15px; text-align: left">
+                                            <i class="icofont-map-pins"></i> {{ company.address }}
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="team-text">
-                                    <h4><a [href]="UtilitiesService.defineSlug(company.name)">{{ company.name }}</a></h4>
-                                    <p style="font-size: 15px; text-align: left"><i class="icofont-map-pins"></i> {{ company.address }}</p>
-                                </div>
                             </div>
-                        </div>
+                        }
                     }
                 </div>
             </div>
